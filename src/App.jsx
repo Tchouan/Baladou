@@ -4,8 +4,8 @@ let FuseLib = null;
 async function loadFuse() {
 if (FuseLib) return FuseLib;
 return new Promise((resolve) => {
-const script = document.createElement(“script”);
-script.src = “https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js”;
+const script = document.createElement(''script'');
+script.src = ''https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js'';
 script.onload = () => { FuseLib = window.Fuse; resolve(window.Fuse); };
 document.head.appendChild(script);
 });
@@ -13,30 +13,30 @@ document.head.appendChild(script);
 
 // Synonymes dog-friendly pour enrichir la recherche
 const SYNONYMES = {
-“restaurant”: [“bistro”,“brasserie”,“taverne”,“cantine”,“resto”],
-“bistro”:     [“restaurant”,“brasserie”,“bar”],
-“brasserie”:  [“restaurant”,“bistro”,“bar”,“bière”],
-“café”:       [“cafe”,“coffee”,“brunch”],
-“coffee”:     [“café”,“cafe”],
-“chien”:      [“dog”,“canin”,“toutou”,“pitou”,“animal”],
-“dog”:        [“chien”,“canin”,“toutou”],
-“parc”:       [“park”,“jardin”,“espace vert”,“zone”],
-“forêt”:      [“bois”,“sentier”,“nature”,“randonnée”,“trail”],
-“sentier”:    [“trail”,“randonnée”,“chemin”,“piste”],
-“terrasse”:   [“extérieur”,“dehors”,“patio”,“outdoor”],
-“hors-laisse”:[“liberté”,“sans laisse”,“zone canine”],
-“montreal”:   [“mtl”,“montréal”],
-“plateau”:    [“plateau-mont-royal”,“pl.”],
-“verdun”:     [“wellington”],
-“saint”:      [“st”,“st-”,“ste”],
+''restaurant'': [''bistro'',''brasserie'',''taverne'',''cantine'',''resto''],
+''bistro'':     [''restaurant'',''brasserie'',''bar''],
+''brasserie'':  [''restaurant'',''bistro'',''bar'',''bière''],
+''café'':       [''cafe'',''coffee'',''brunch''],
+''coffee'':     [''café'',''cafe''],
+''chien'':      [''dog'',''canin'',''toutou'',''pitou'',''animal''],
+''dog'':        [''chien'',''canin'',''toutou''],
+''parc'':       [''park'',''jardin'',''espace vert'',''zone''],
+''forêt'':      [''bois'',''sentier'',''nature'',''randonnée'',''trail''],
+''sentier'':    [''trail'',''randonnée'',''chemin'',''piste''],
+''terrasse'':   [''extérieur'',''dehors'',''patio'',''outdoor''],
+''hors-laisse'':[''liberté'',''sans laisse'',''zone canine''],
+''montreal'':   [''mtl'',''montréal''],
+''plateau'':    [''plateau-mont-royal'',''pl.''],
+''verdun'':     [''wellington''],
+''saint'':      [''st'',''st-'',''ste''],
 };
 
 // Normalise une chaîne : minuscules, sans accents, sans ponctuation
 function normalize(str) {
 return str.toLowerCase()
-.normalize(“NFD”).replace(/[\u0300-\u036f]/g, “”)
-.replace(/[^a-z0-9\s]/g, “ “)
-.replace(/\s+/g, “ “).trim();
+.normalize(''NFD'').replace(/[\u0300-\u036f]/g, '''')
+.replace(/[^a-z0-9\s]/g, '' '')
+.replace(/\s+/g, '' '').trim();
 }
 
 // Recherche floue enrichie avec synonymes
@@ -47,7 +47,7 @@ const q = normalize(query);
 // Étape 1 — Fuse.js si disponible
 if (FuseLib) {
 const fuse = new FuseLib(lieux, {
-keys: [“name”,“quartier”,“desc”,“tags”,“politique”,“adresse”],
+keys: [''name'',''quartier'',''desc'',''tags'',''politique'',''adresse''],
 threshold: 0.4,        // 0 = exact, 1 = tout accepter
 distance: 100,
 includeScore: true,
@@ -66,7 +66,7 @@ const termes = [q, …synonymsForQuery];
 
 return lieux.filter(l => {
 const haystack = normalize(
-[l.name, l.quartier, l.desc, …(l.tags||[]), l.politique||””, l.adresse||””].join(” “)
+[l.name, l.quartier, l.desc, …(l.tags||[]), l.politique||'''', l.adresse||''''].join('' '')
 );
 return termes.some(t => haystack.includes(t));
 });
@@ -75,156 +75,156 @@ return termes.some(t => haystack.includes(t));
 // ─── DESIGN TOKENS ────────────────────────────────────────────────
 const T = {
 // Baladou palette — warm terracotta + sage + deep forest
-bg:        “#FBF7F2”,
-bgCard:    “#FFFFFF”,
-bark:      “#1E140A”,
-soil:      “#3D2B1A”,
-terra:     “#C96442”,  // primary CTA
-terraDk:   “#A44E30”,
-terraLt:   “#F0D5C8”,
-sage:      “#6B9E7A”,
-sageDk:    “#4A7A58”,
-sageLt:    “#D8EDDF”,
-gold:      “#D4A847”,
-goldLt:    “#FDF3D8”,
-slate:     “#5A7FA0”,
-slateLt:   “#D8E8F4”,
-stone:     “#E8E0D6”,
-taupe:     “#C8BAA8”,
-warm:      “#A8957E”,
-muted:     “#8A7460”,
-deep:      “#5C4A35”,
-cream:     “#F4EDE4”,
-parch:     “#EDE3D6”,
-amber:     “#E09840”,
-amberLt:   “#FEF6E4”,
+bg:        ''#FBF7F2'',
+bgCard:    ''#FFFFFF'',
+bark:      ''#1E140A'',
+soil:      ''#3D2B1A'',
+terra:     ''#C96442'',  // primary CTA
+terraDk:   ''#A44E30'',
+terraLt:   ''#F0D5C8'',
+sage:      ''#6B9E7A'',
+sageDk:    ''#4A7A58'',
+sageLt:    ''#D8EDDF'',
+gold:      ''#D4A847'',
+goldLt:    ''#FDF3D8'',
+slate:     ''#5A7FA0'',
+slateLt:   ''#D8E8F4'',
+stone:     ''#E8E0D6'',
+taupe:     ''#C8BAA8'',
+warm:      ''#A8957E'',
+muted:     ''#8A7460'',
+deep:      ''#5C4A35'',
+cream:     ''#F4EDE4'',
+parch:     ''#EDE3D6'',
+amber:     ''#E09840'',
+amberLt:   ''#FEF6E4'',
 };
 
 const CAT = [
-{ id:“cafes”,      label:“Cafés”,        icon:“☕”, color:T.terra,  desc:“Terrasses & brunchs” },
-{ id:“restos”,     label:“Restos”,       icon:“🍽️”, color:”#B85A3A”,desc:“Repas dog-friendly” },
-{ id:“boutiques”,  label:“Boutiques”,    icon:“🛍️”, color:T.slate,  desc:“Shopping avec toutou” },
-{ id:“parcs”,      label:“Parcs”,        icon:“🌿”, color:T.sage,   desc:“Zones hors-laisse” },
-{ id:“randonees”,  label:“Randonnées”,   icon:“🥾”, color:”#5C6B3A”,desc:“Sentiers & nature” },
-{ id:“campings”,   label:“Campings”,     icon:“⛺”, color:”#7A6B3A”,desc:“Nuits en plein air” },
-{ id:“activites”,  label:“Activités”,    icon:“🎯”, color:”#8A5A7A”,desc:“Sorties & loisirs” },
+{ id:''cafes'',      label:''Cafés'',        icon:''☕'', color:T.terra,  desc:''Terrasses & brunchs'' },
+{ id:''restos'',     label:''Restos'',       icon:''🍽️'', color:''#B85A3A'',desc:''Repas dog-friendly'' },
+{ id:''boutiques'',  label:''Boutiques'',    icon:''🛍️'', color:T.slate,  desc:''Shopping avec toutou'' },
+{ id:''parcs'',      label:''Parcs'',        icon:''🌿'', color:T.sage,   desc:''Zones hors-laisse'' },
+{ id:''randonees'',  label:''Randonnées'',   icon:''🥾'', color:''#5C6B3A'',desc:''Sentiers & nature'' },
+{ id:''campings'',   label:''Campings'',     icon:''⛺'', color:''#7A6B3A'',desc:''Nuits en plein air'' },
+{ id:''activites'',  label:''Activités'',    icon:''🎯'', color:''#8A5A7A'',desc:''Sorties & loisirs'' },
 ];
 
 const QUARTIERS = [
-“Plateau-Mont-Royal”,“Mile-End”,“Verdun”,“Rosemont”,“Saint-Henri”,
-“Outremont”,“Hochelaga”,“Griffintown”,“Vieux-Montréal”,“NDG”,
-“Côte-des-Neiges”,“La Petite-Patrie”,“Villeray”,“Ahuntsic”,
+''Plateau-Mont-Royal'',''Mile-End'',''Verdun'',''Rosemont'',''Saint-Henri'',
+''Outremont'',''Hochelaga'',''Griffintown'',''Vieux-Montréal'',''NDG'',
+''Côte-des-Neiges'',''La Petite-Patrie'',''Villeray'',''Ahuntsic'',
 ];
 
 const DESTINATIONS_ESCAPADE = [
-“Charlevoix”,“Laurentides”,“Cantons-de-l’Est”,“Lanaudière”,
-“Mauricie”,“Gaspésie”,“Outaouais”,“Côte-Nord”,
+''Charlevoix'',''Laurentides'',''Cantons-de-l’Est'',''Lanaudière'',
+''Mauricie'',''Gaspésie'',''Outaouais'',''Côte-Nord'',
 ];
 
 const LIEUX = [
 // ── CAFÉS ──────────────────────────────────────────────────────────
-{ id:1,  cat:“cafes”, name:“Saint JJH & Café”,              quartier:“Verdun”,             desc:“Café dog-friendly à Verdun. Chiens admis en terrasse, et l’hiver via la fenêtre à emporter. Friandises et eau souvent offerts !”, tags:[“Terrasse”,“Friandises”,“Hiver”], saison:null, politique:“Terrasse + fenêtre à emporter l’hiver, friandises et eau offerts”, adresse:“3323 Rue Evelyn, Montréal”, tel:“514-984-2267”, confirmations:0, lat:45.4632, lng:-73.5668 },
-{ id:2,  cat:“cafes”, name:“Phin Cafe”,                     quartier:“Plateau-Mont-Royal”, desc:“Café dog-friendly sur la rue Roy.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“804 Rue Roy E, Montréal”, tel:null, confirmations:0, lat:45.5218, lng:-73.5748 },
-{ id:3,  cat:“cafes”, name:“Bulla Café”,                    quartier:“Plateau-Mont-Royal”, desc:“Café dog-friendly sur la rue Saint-Denis.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“4141 Rue Saint-Denis, Montréal”, tel:null, confirmations:0, lat:45.5238, lng:-73.5768 },
-{ id:4,  cat:“cafes”, name:“Café Alphabet”,                 quartier:“Mile-End”,           desc:“Café dog-friendly avec belle terrasse sur la rue Clark.”, tags:[“Café”,“Terrasse”,“Dog-friendly”], saison:null, politique:””, adresse:“5765 Rue Clark, Montréal”, tel:null, confirmations:0, lat:45.5255, lng:-73.5968 },
-{ id:5,  cat:“cafes”, name:“Bah! Café | Brazilian Coffee Shop”, quartier:“Plateau-Mont-Royal”, desc:“Café brésilien dog-friendly. Possède des friandises pour les chiens !”, tags:[“Café”,“Brésilien”,“Friandises”], saison:null, politique:“Dog-friendly, friandises offertes”, adresse:“857 Rue Marie-Anne, Montréal”, tel:“514-524-4410”, confirmations:0, lat:45.5228, lng:-73.5748 },
-{ id:6,  cat:“cafes”, name:“GUILLAUME”,                     quartier:“Mile-End”,           desc:“Épicerie fine et café dog-friendly sur le boulevard Saint-Laurent.”, tags:[“Café”,“Épicerie”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“5170 Boul. Saint-Laurent, Montréal”, tel:“514-507-3199”, confirmations:0, lat:45.5262, lng:-73.5975 },
-{ id:7,  cat:“cafes”, name:“Ô Petit Paris Mont-Royal”,      quartier:“Plateau-Mont-Royal”, desc:“Café d’ambiance parisienne dog-friendly sur l’avenue Mont-Royal.”, tags:[“Café”,“Français”,“Terrasse”], saison:null, politique:””, adresse:“1592 Avenue du Mont-Royal E, Montréal”, tel:“514-528-6488”, confirmations:0, lat:45.5195, lng:-73.5748 },
-{ id:8,  cat:“cafes”, name:“Ô Petit Paris Wellington”,      quartier:“Verdun”,             desc:“La version Verdun du café parisien dog-friendly. Terrasse animée sur Wellington.”, tags:[“Café”,“Français”,“Terrasse”], saison:null, politique:””, adresse:“3944 Rue Wellington, Verdun”, tel:“438-380-0772”, confirmations:0, lat:45.4618, lng:-73.5682 },
-{ id:9,  cat:“cafes”, name:“Mix’Heure”,                     quartier:“Plateau-Mont-Royal”, desc:“Café avec belle terrasse sur Saint-Denis. Dog-friendly et atmosphère détendue.”, tags:[“Café”,“Terrasse”,“Dog-friendly”], saison:null, politique:””, adresse:“4282 Rue Saint-Denis, Montréal”, tel:“514-487-2131”, confirmations:0, lat:45.5235, lng:-73.5768 },
-{ id:10, cat:“cafes”, name:“Café Alice”,                    quartier:“Rosemont”,           desc:“Café de quartier dog-friendly sur la rue Masson.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:””, adresse:“3756 Rue Masson, Montréal”, tel:“514-727-9144”, confirmations:0, lat:45.5380, lng:-73.5640 },
-{ id:11, cat:“cafes”, name:“Café Lafontaine”,               quartier:“Rosemont”,           desc:“Café cosy dog-friendly sur l’avenue Papineau.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:””, adresse:“3535 Av. Papineau local 9, Montréal”, tel:“514-527-3030”, confirmations:0, lat:45.5308, lng:-73.5688 },
-{ id:12, cat:“cafes”, name:“Chez Nouri”,                    quartier:“Plateau-Mont-Royal”, desc:“Café chaleureux dog-friendly sur l’avenue des Pins.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:””, adresse:“10 Av. des Pins O, Montréal”, tel:“514-823-9441”, confirmations:0, lat:45.5168, lng:-73.5742 },
-{ id:13, cat:“cafes”, name:“Café Le Loup Bleu”,             quartier:“Plateau-Mont-Royal”, desc:“Café dog-friendly sur la rue Marie-Anne.”, tags:[“Café”,“Dog-friendly”], saison:null, politique:””, adresse:“1279 Rue Marie-Anne, Montréal”, tel:null, confirmations:0, lat:45.5222, lng:-73.5738 },
-{ id:14, cat:“cafes”, name:“Afrooshé Chocolaterie”,         quartier:“Plateau-Mont-Royal”, desc:“Chocolaterie artisanale dog-friendly sur l’avenue Mont-Royal.”, tags:[“Chocolaterie”,“Artisanal”,“Dog-friendly”], saison:null, politique:””, adresse:“1828 Avenue du Mont-Royal E, Montréal”, tel:“514-522-2885”, confirmations:0, lat:45.5198, lng:-73.5718 },
+{ id:1,  cat:''cafes'', name:''Saint JJH & Café'',              quartier:''Verdun'',             desc:''Café dog-friendly à Verdun. Chiens admis en terrasse, et l’hiver via la fenêtre à emporter. Friandises et eau souvent offerts !'', tags:[''Terrasse'',''Friandises'',''Hiver''], saison:null, politique:''Terrasse + fenêtre à emporter l’hiver, friandises et eau offerts'', adresse:''3323 Rue Evelyn, Montréal'', tel:''514-984-2267'', confirmations:0, lat:45.4632, lng:-73.5668 },
+{ id:2,  cat:''cafes'', name:''Phin Cafe'',                     quartier:''Plateau-Mont-Royal'', desc:''Café dog-friendly sur la rue Roy.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''804 Rue Roy E, Montréal'', tel:null, confirmations:0, lat:45.5218, lng:-73.5748 },
+{ id:3,  cat:''cafes'', name:''Bulla Café'',                    quartier:''Plateau-Mont-Royal'', desc:''Café dog-friendly sur la rue Saint-Denis.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''4141 Rue Saint-Denis, Montréal'', tel:null, confirmations:0, lat:45.5238, lng:-73.5768 },
+{ id:4,  cat:''cafes'', name:''Café Alphabet'',                 quartier:''Mile-End'',           desc:''Café dog-friendly avec belle terrasse sur la rue Clark.'', tags:[''Café'',''Terrasse'',''Dog-friendly''], saison:null, politique:'''', adresse:''5765 Rue Clark, Montréal'', tel:null, confirmations:0, lat:45.5255, lng:-73.5968 },
+{ id:5,  cat:''cafes'', name:''Bah! Café | Brazilian Coffee Shop'', quartier:''Plateau-Mont-Royal'', desc:''Café brésilien dog-friendly. Possède des friandises pour les chiens !'', tags:[''Café'',''Brésilien'',''Friandises''], saison:null, politique:''Dog-friendly, friandises offertes'', adresse:''857 Rue Marie-Anne, Montréal'', tel:''514-524-4410'', confirmations:0, lat:45.5228, lng:-73.5748 },
+{ id:6,  cat:''cafes'', name:''GUILLAUME'',                     quartier:''Mile-End'',           desc:''Épicerie fine et café dog-friendly sur le boulevard Saint-Laurent.'', tags:[''Café'',''Épicerie'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''5170 Boul. Saint-Laurent, Montréal'', tel:''514-507-3199'', confirmations:0, lat:45.5262, lng:-73.5975 },
+{ id:7,  cat:''cafes'', name:''Ô Petit Paris Mont-Royal'',      quartier:''Plateau-Mont-Royal'', desc:''Café d’ambiance parisienne dog-friendly sur l’avenue Mont-Royal.'', tags:[''Café'',''Français'',''Terrasse''], saison:null, politique:'''', adresse:''1592 Avenue du Mont-Royal E, Montréal'', tel:''514-528-6488'', confirmations:0, lat:45.5195, lng:-73.5748 },
+{ id:8,  cat:''cafes'', name:''Ô Petit Paris Wellington'',      quartier:''Verdun'',             desc:''La version Verdun du café parisien dog-friendly. Terrasse animée sur Wellington.'', tags:[''Café'',''Français'',''Terrasse''], saison:null, politique:'''', adresse:''3944 Rue Wellington, Verdun'', tel:''438-380-0772'', confirmations:0, lat:45.4618, lng:-73.5682 },
+{ id:9,  cat:''cafes'', name:''Mix’Heure'',                     quartier:''Plateau-Mont-Royal'', desc:''Café avec belle terrasse sur Saint-Denis. Dog-friendly et atmosphère détendue.'', tags:[''Café'',''Terrasse'',''Dog-friendly''], saison:null, politique:'''', adresse:''4282 Rue Saint-Denis, Montréal'', tel:''514-487-2131'', confirmations:0, lat:45.5235, lng:-73.5768 },
+{ id:10, cat:''cafes'', name:''Café Alice'',                    quartier:''Rosemont'',           desc:''Café de quartier dog-friendly sur la rue Masson.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:'''', adresse:''3756 Rue Masson, Montréal'', tel:''514-727-9144'', confirmations:0, lat:45.5380, lng:-73.5640 },
+{ id:11, cat:''cafes'', name:''Café Lafontaine'',               quartier:''Rosemont'',           desc:''Café cosy dog-friendly sur l’avenue Papineau.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:'''', adresse:''3535 Av. Papineau local 9, Montréal'', tel:''514-527-3030'', confirmations:0, lat:45.5308, lng:-73.5688 },
+{ id:12, cat:''cafes'', name:''Chez Nouri'',                    quartier:''Plateau-Mont-Royal'', desc:''Café chaleureux dog-friendly sur l’avenue des Pins.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:'''', adresse:''10 Av. des Pins O, Montréal'', tel:''514-823-9441'', confirmations:0, lat:45.5168, lng:-73.5742 },
+{ id:13, cat:''cafes'', name:''Café Le Loup Bleu'',             quartier:''Plateau-Mont-Royal'', desc:''Café dog-friendly sur la rue Marie-Anne.'', tags:[''Café'',''Dog-friendly''], saison:null, politique:'''', adresse:''1279 Rue Marie-Anne, Montréal'', tel:null, confirmations:0, lat:45.5222, lng:-73.5738 },
+{ id:14, cat:''cafes'', name:''Afrooshé Chocolaterie'',         quartier:''Plateau-Mont-Royal'', desc:''Chocolaterie artisanale dog-friendly sur l’avenue Mont-Royal.'', tags:[''Chocolaterie'',''Artisanal'',''Dog-friendly''], saison:null, politique:'''', adresse:''1828 Avenue du Mont-Royal E, Montréal'', tel:''514-522-2885'', confirmations:0, lat:45.5198, lng:-73.5718 },
 
 // ── RESTAURANTS ────────────────────────────────────────────────────
-{ id:15, cat:“restos”, name:“Bistro Garage Café”,            quartier:“Verdun”,             desc:“Bistro dog-friendly à Verdun. Chiens admis en terrasse, gamelle d’eau offerte !”, tags:[“Bistro”,“Terrasse”,“Gamelle offerte”], saison:null, politique:“Terrasse uniquement, gamelle d’eau offerte”, adresse:“275 Rue Hickson, Verdun”, tel:“514-768-4630”, confirmations:0, lat:45.4622, lng:-73.5672 },
-{ id:16, cat:“restos”, name:“Bagel St-Lo Verdun”,            quartier:“Verdun”,             desc:“Bagel dog-friendly à Verdun. Chiens admis en terrasse chauffée même l’hiver !”, tags:[“Bagel”,“Terrasse chauffée”,“Hiver”], saison:null, politique:“Terrasse chauffée en hiver”, adresse:“5411 Rue de Verdun, Verdun”, tel:“514-507-8430”, confirmations:0, lat:45.4608, lng:-73.5698 },
-{ id:17, cat:“restos”, name:“RAKU”,                          quartier:“Plateau-Mont-Royal”, desc:“Restaurant dog-friendly sur la rue Rachel.”, tags:[“Restaurant”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“12 Rue Rachel E, Montréal”, tel:“438-520-5130”, confirmations:0, lat:45.5212, lng:-73.5762 },
-{ id:18, cat:“restos”, name:“Réservoir – Brasserie”,         quartier:“Plateau-Mont-Royal”, desc:“Brasserie artisanale dog-friendly sur l’avenue Duluth.”, tags:[“Brasserie”,“Bière”,“Terrasse”], saison:null, politique:“Connu comme dog-friendly”, adresse:“9 Av. Duluth E, Montréal”, tel:null, confirmations:0, lat:45.5218, lng:-73.5758 },
-{ id:19, cat:“restos”, name:“Restaurant Mont-Royal Hot-Dog”, quartier:“Plateau-Mont-Royal”, desc:“Cantine emblématique dog-friendly sur l’avenue Mont-Royal.”, tags:[“Cantine”,“Hot-dog”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“1001 Avenue du Mont-Royal E, Montréal”, tel:“514-523-3670”, confirmations:0, lat:45.5198, lng:-73.5748 },
-{ id:20, cat:“restos”, name:“Lloydie’s St-Viateur”,          quartier:“Mile-End”,           desc:“Restaurant dog-friendly sur la rue Saint-Viateur Ouest.”, tags:[“Restaurant”,“Dog-friendly”], saison:null, politique:“Connu comme dog-friendly”, adresse:“66 Rue Saint-Viateur O, Montréal”, tel:“514-274-7474”, confirmations:0, lat:45.5245, lng:-73.5988 },
-{ id:21, cat:“restos”, name:“Le Trèfle – Taverne Irlandaise”,quartier:“Verdun”,             desc:“Taverne irlandaise dog-friendly sur Wellington. Chiens admis en terrasse.”, tags:[“Taverne”,“Irlandais”,“Terrasse”], saison:null, politique:“Terrasse uniquement”, adresse:“4718 Rue Wellington, Verdun”, tel:“514-762-3324”, confirmations:0, lat:45.4612, lng:-73.5668 },
+{ id:15, cat:''restos'', name:''Bistro Garage Café'',            quartier:''Verdun'',             desc:''Bistro dog-friendly à Verdun. Chiens admis en terrasse, gamelle d’eau offerte !'', tags:[''Bistro'',''Terrasse'',''Gamelle offerte''], saison:null, politique:''Terrasse uniquement, gamelle d’eau offerte'', adresse:''275 Rue Hickson, Verdun'', tel:''514-768-4630'', confirmations:0, lat:45.4622, lng:-73.5672 },
+{ id:16, cat:''restos'', name:''Bagel St-Lo Verdun'',            quartier:''Verdun'',             desc:''Bagel dog-friendly à Verdun. Chiens admis en terrasse chauffée même l’hiver !'', tags:[''Bagel'',''Terrasse chauffée'',''Hiver''], saison:null, politique:''Terrasse chauffée en hiver'', adresse:''5411 Rue de Verdun, Verdun'', tel:''514-507-8430'', confirmations:0, lat:45.4608, lng:-73.5698 },
+{ id:17, cat:''restos'', name:''RAKU'',                          quartier:''Plateau-Mont-Royal'', desc:''Restaurant dog-friendly sur la rue Rachel.'', tags:[''Restaurant'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''12 Rue Rachel E, Montréal'', tel:''438-520-5130'', confirmations:0, lat:45.5212, lng:-73.5762 },
+{ id:18, cat:''restos'', name:''Réservoir – Brasserie'',         quartier:''Plateau-Mont-Royal'', desc:''Brasserie artisanale dog-friendly sur l’avenue Duluth.'', tags:[''Brasserie'',''Bière'',''Terrasse''], saison:null, politique:''Connu comme dog-friendly'', adresse:''9 Av. Duluth E, Montréal'', tel:null, confirmations:0, lat:45.5218, lng:-73.5758 },
+{ id:19, cat:''restos'', name:''Restaurant Mont-Royal Hot-Dog'', quartier:''Plateau-Mont-Royal'', desc:''Cantine emblématique dog-friendly sur l’avenue Mont-Royal.'', tags:[''Cantine'',''Hot-dog'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''1001 Avenue du Mont-Royal E, Montréal'', tel:''514-523-3670'', confirmations:0, lat:45.5198, lng:-73.5748 },
+{ id:20, cat:''restos'', name:''Lloydie’s St-Viateur'',          quartier:''Mile-End'',           desc:''Restaurant dog-friendly sur la rue Saint-Viateur Ouest.'', tags:[''Restaurant'',''Dog-friendly''], saison:null, politique:''Connu comme dog-friendly'', adresse:''66 Rue Saint-Viateur O, Montréal'', tel:''514-274-7474'', confirmations:0, lat:45.5245, lng:-73.5988 },
+{ id:21, cat:''restos'', name:''Le Trèfle – Taverne Irlandaise'',quartier:''Verdun'',             desc:''Taverne irlandaise dog-friendly sur Wellington. Chiens admis en terrasse.'', tags:[''Taverne'',''Irlandais'',''Terrasse''], saison:null, politique:''Terrasse uniquement'', adresse:''4718 Rue Wellington, Verdun'', tel:''514-762-3324'', confirmations:0, lat:45.4612, lng:-73.5668 },
 
 // ── PARCS ──────────────────────────────────────────────────────────
-{ id:22, cat:“parcs”, name:“Parc à chiens du Parc La Fontaine”, quartier:“Plateau-Mont-Royal”, desc:“Zone hors-laisse officielle dans le magnifique Parc La Fontaine. Très fréquenté et bien entretenu.”, tags:[“Hors-laisse”,“Grand parc”,“Central”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Parc La Fontaine, Montréal”, tel:null, confirmations:0, lat:45.5290, lng:-73.5695 },
-{ id:23, cat:“parcs”, name:“Parc à chien Dupuis”,               quartier:“Plateau-Mont-Royal”, desc:“Petit parc à chiens de quartier, idéal pour les sorties rapides.”, tags:[“Hors-laisse”,“Quartier”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Parc Dupuis, Montréal”, tel:null, confirmations:0, lat:45.5180, lng:-73.5740 },
-{ id:24, cat:“parcs”, name:“Parc à chiens Champion”,            quartier:“Rosemont”,           desc:“Parc à chiens de Rosemont recensé sur la Carte Canine de Montréal.”, tags:[“Hors-laisse”,“Rosemont”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Parc Champion, Rosemont”, tel:null, confirmations:0, lat:45.5420, lng:-73.5750 },
-{ id:25, cat:“parcs”, name:“Parc à chiens de Verdun”,           quartier:“Verdun”,             desc:“Zone hors-laisse officielle à Verdun. Très apprécié des propriétaires de chiens du quartier.”, tags:[“Hors-laisse”,“Verdun”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Verdun, Montréal”, tel:null, confirmations:0, lat:45.4608, lng:-73.5695 },
-{ id:26, cat:“parcs”, name:“Parc à chiens Sir-Wilfrid-Laurier”, quartier:“Plateau-Mont-Royal”, desc:“Zone canine clôturée très animée. Idéal pour socialiser — les chiens adorent, les maîtres aussi.”, tags:[“Clôturée”,“Social”,“Central”], saison:null, politique:“Zone hors-laisse clôturée”, adresse:“Parc Sir-Wilfrid-Laurier, Montréal”, tel:null, confirmations:0, lat:45.5352, lng:-73.5715 },
-{ id:27, cat:“parcs”, name:“Parc à chiens du Père-Marquette”,   quartier:“Rosemont”,           desc:“Zone hors-laisse dans le Parc du Père-Marquette, quartier Rosemont.”, tags:[“Hors-laisse”,“Rosemont”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Parc du Père-Marquette, Rosemont”, tel:null, confirmations:0, lat:45.5395, lng:-73.5620 },
-{ id:28, cat:“parcs”, name:“Parc à chiens de Rosemont”,         quartier:“Rosemont”,           desc:“Parc à chiens de Rosemont recensé sur la Carte Canine de Montréal.”, tags:[“Hors-laisse”,“Rosemont”], saison:null, politique:“Zone hors-laisse désignée”, adresse:“Rosemont, Montréal”, tel:null, confirmations:0, lat:45.5410, lng:-73.5780 },
-{ id:29, cat:“parcs”, name:“Parc Rosemont”,                     quartier:“Rosemont”,           desc:“Parc de quartier dog-friendly à Rosemont.”, tags:[“Parc”,“Rosemont”,“Dog-friendly”], saison:null, politique:””, adresse:“Rosemont, Montréal”, tel:null, confirmations:0, lat:45.5400, lng:-73.5800 },
-{ id:30, cat:“parcs”, name:“Parc D’Argenson”,                   quartier:“Ahuntsic”,           desc:“Parc dog-friendly dans le quartier Ahuntsic, recensé sur la Carte Canine.”, tags:[“Parc”,“Ahuntsic”,“Dog-friendly”], saison:null, politique:””, adresse:“Ahuntsic, Montréal”, tel:null, confirmations:0, lat:45.5580, lng:-73.6580 },
+{ id:22, cat:''parcs'', name:''Parc à chiens du Parc La Fontaine'', quartier:''Plateau-Mont-Royal'', desc:''Zone hors-laisse officielle dans le magnifique Parc La Fontaine. Très fréquenté et bien entretenu.'', tags:[''Hors-laisse'',''Grand parc'',''Central''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Parc La Fontaine, Montréal'', tel:null, confirmations:0, lat:45.5290, lng:-73.5695 },
+{ id:23, cat:''parcs'', name:''Parc à chien Dupuis'',               quartier:''Plateau-Mont-Royal'', desc:''Petit parc à chiens de quartier, idéal pour les sorties rapides.'', tags:[''Hors-laisse'',''Quartier''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Parc Dupuis, Montréal'', tel:null, confirmations:0, lat:45.5180, lng:-73.5740 },
+{ id:24, cat:''parcs'', name:''Parc à chiens Champion'',            quartier:''Rosemont'',           desc:''Parc à chiens de Rosemont recensé sur la Carte Canine de Montréal.'', tags:[''Hors-laisse'',''Rosemont''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Parc Champion, Rosemont'', tel:null, confirmations:0, lat:45.5420, lng:-73.5750 },
+{ id:25, cat:''parcs'', name:''Parc à chiens de Verdun'',           quartier:''Verdun'',             desc:''Zone hors-laisse officielle à Verdun. Très apprécié des propriétaires de chiens du quartier.'', tags:[''Hors-laisse'',''Verdun''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Verdun, Montréal'', tel:null, confirmations:0, lat:45.4608, lng:-73.5695 },
+{ id:26, cat:''parcs'', name:''Parc à chiens Sir-Wilfrid-Laurier'', quartier:''Plateau-Mont-Royal'', desc:''Zone canine clôturée très animée. Idéal pour socialiser — les chiens adorent, les maîtres aussi.'', tags:[''Clôturée'',''Social'',''Central''], saison:null, politique:''Zone hors-laisse clôturée'', adresse:''Parc Sir-Wilfrid-Laurier, Montréal'', tel:null, confirmations:0, lat:45.5352, lng:-73.5715 },
+{ id:27, cat:''parcs'', name:''Parc à chiens du Père-Marquette'',   quartier:''Rosemont'',           desc:''Zone hors-laisse dans le Parc du Père-Marquette, quartier Rosemont.'', tags:[''Hors-laisse'',''Rosemont''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Parc du Père-Marquette, Rosemont'', tel:null, confirmations:0, lat:45.5395, lng:-73.5620 },
+{ id:28, cat:''parcs'', name:''Parc à chiens de Rosemont'',         quartier:''Rosemont'',           desc:''Parc à chiens de Rosemont recensé sur la Carte Canine de Montréal.'', tags:[''Hors-laisse'',''Rosemont''], saison:null, politique:''Zone hors-laisse désignée'', adresse:''Rosemont, Montréal'', tel:null, confirmations:0, lat:45.5410, lng:-73.5780 },
+{ id:29, cat:''parcs'', name:''Parc Rosemont'',                     quartier:''Rosemont'',           desc:''Parc de quartier dog-friendly à Rosemont.'', tags:[''Parc'',''Rosemont'',''Dog-friendly''], saison:null, politique:'''', adresse:''Rosemont, Montréal'', tel:null, confirmations:0, lat:45.5400, lng:-73.5800 },
+{ id:30, cat:''parcs'', name:''Parc D’Argenson'',                   quartier:''Ahuntsic'',           desc:''Parc dog-friendly dans le quartier Ahuntsic, recensé sur la Carte Canine.'', tags:[''Parc'',''Ahuntsic'',''Dog-friendly''], saison:null, politique:'''', adresse:''Ahuntsic, Montréal'', tel:null, confirmations:0, lat:45.5580, lng:-73.6580 },
 ];
 
 const ITINERAIRES_VILLE = {
-“Mile-End_cafes”: {
-titre:“Matinée café & boutiques Mile-End”,
-emoji:“☕”,
+''Mile-End_cafes'': {
+titre:''Matinée café & boutiques Mile-End'',
+emoji:''☕'',
 etapes:[
-{ heure:“9h30”,  icon:“☕”, lieu:“Café Olimpico”,   desc:“Café du matin en terrasse. Votre chien fera fureur auprès des habitués du quartier.” },
-{ heure:“10h30”, icon:“🛍️”, lieu:“Sophie & Cie”,    desc:“À 15 min à pied. Une petite gâterie méritée pour votre compagnon.” },
-{ heure:“12h00”, icon:“🐾”, lieu:“Parc Sir-Wilfrid-Laurier”, desc:“Zone hors-laisse clôturée. Parfait pour dépenser l’énergie avant le lunch.” },
+{ heure:''9h30'',  icon:''☕'', lieu:''Café Olimpico'',   desc:''Café du matin en terrasse. Votre chien fera fureur auprès des habitués du quartier.'' },
+{ heure:''10h30'', icon:''🛍️'', lieu:''Sophie & Cie'',    desc:''À 15 min à pied. Une petite gâterie méritée pour votre compagnon.'' },
+{ heure:''12h00'', icon:''🐾'', lieu:''Parc Sir-Wilfrid-Laurier'', desc:''Zone hors-laisse clôturée. Parfait pour dépenser l’énergie avant le lunch.'' },
 ],
 },
-“Verdun_parcs”: {
-titre:“Verdun au naturel”,
-emoji:“🌿”,
+''Verdun_parcs'': {
+titre:''Verdun au naturel'',
+emoji:''🌿'',
 etapes:[
-{ heure:“10h00”, icon:“🌿”, lieu:“Parc des Rapides”,  desc:“Sentiers longeant le Saint-Laurent. Ambiance sauvage à 5 min de chez vous.” },
-{ heure:“12h00”, icon:“🍽️”, lieu:“Dépanneur Le Pick Up”, desc:“Lunch en terrasse avec les habitués de Verdun. Ambiance authentique garantie.” },
-{ heure:“14h00”, icon:“🌿”, lieu:“Parc Angrignon”,    desc:“Zone hors-laisse pour finir la journée. Le plus grand espace canin de l’île.” },
+{ heure:''10h00'', icon:''🌿'', lieu:''Parc des Rapides'',  desc:''Sentiers longeant le Saint-Laurent. Ambiance sauvage à 5 min de chez vous.'' },
+{ heure:''12h00'', icon:''🍽️'', lieu:''Dépanneur Le Pick Up'', desc:''Lunch en terrasse avec les habitués de Verdun. Ambiance authentique garantie.'' },
+{ heure:''14h00'', icon:''🌿'', lieu:''Parc Angrignon'',    desc:''Zone hors-laisse pour finir la journée. Le plus grand espace canin de l’île.'' },
 ],
 },
-“Plateau-Mont-Royal_restos”: {
-titre:“Plateau gourmand avec toutou”,
-emoji:“🍽️”,
+''Plateau-Mont-Royal_restos'': {
+titre:''Plateau gourmand avec toutou'',
+emoji:''🍽️'',
 etapes:[
-{ heure:“11h00”, icon:“🐾”, lieu:“Parc Sir-Wilfrid-Laurier”, desc:“Commencez par dépenser l’énergie dans la zone hors-laisse clôturée.” },
-{ heure:“12h30”, icon:“🍽️”, lieu:“Le Chien Fumant”,  desc:“Brunch en terrasse dans la ruelle. Le nom dit tout !” },
-{ heure:“14h30”, icon:“☕”, lieu:“Café Névé”,         desc:“Café de spécialité pour finir en beauté. Terrasse dog-friendly.” },
+{ heure:''11h00'', icon:''🐾'', lieu:''Parc Sir-Wilfrid-Laurier'', desc:''Commencez par dépenser l’énergie dans la zone hors-laisse clôturée.'' },
+{ heure:''12h30'', icon:''🍽️'', lieu:''Le Chien Fumant'',  desc:''Brunch en terrasse dans la ruelle. Le nom dit tout !'' },
+{ heure:''14h30'', icon:''☕'', lieu:''Café Névé'',         desc:''Café de spécialité pour finir en beauté. Terrasse dog-friendly.'' },
 ],
 },
 };
 
 const ITINERAIRES_ESCAPADE = {
-“Charlevoix_weekend”: {
-titre:“Weekend magique à Charlevoix”,
-emoji:“🏔️”,
+''Charlevoix_weekend'': {
+titre:''Weekend magique à Charlevoix'',
+emoji:''🏔️'',
 jours:[
-{ jour:“Vendredi soir”, etapes:[
-{ heure:“17h00”, icon:“🚗”, lieu:“Départ Montréal”,        desc:“3h de route vers Charlevoix. Arrêt recommandé à Baie-Saint-Paul.” },
-{ heure:“20h00”, icon:“⛺”, lieu:“Arrivée à l’hébergement”, desc:“Installez-vous et profitez de la soirée en plein air.” },
+{ jour:''Vendredi soir'', etapes:[
+{ heure:''17h00'', icon:''🚗'', lieu:''Départ Montréal'',        desc:''3h de route vers Charlevoix. Arrêt recommandé à Baie-Saint-Paul.'' },
+{ heure:''20h00'', icon:''⛺'', lieu:''Arrivée à l’hébergement'', desc:''Installez-vous et profitez de la soirée en plein air.'' },
 ]},
-{ jour:“Samedi”, etapes:[
-{ heure:“8h00”,  icon:“🥾”, lieu:“Parc des Hautes-Gorges”,  desc:“Le sentier de la rivière Malbaie. Spectaculaire. Chiens admis sur la majorité des sentiers.” },
-{ heure:“12h00”, icon:“🍱”, lieu:“Pique-nique en forêt”,    desc:“Pause méritée au bord de la rivière. Votre chien peut se baigner !” },
-{ heure:“15h00”, icon:“🐋”, lieu:“Tadoussac – Observation”, desc:“Croisière aux baleines. Chiens admis sur le pont extérieur. Inoubliable.” },
+{ jour:''Samedi'', etapes:[
+{ heure:''8h00'',  icon:''🥾'', lieu:''Parc des Hautes-Gorges'',  desc:''Le sentier de la rivière Malbaie. Spectaculaire. Chiens admis sur la majorité des sentiers.'' },
+{ heure:''12h00'', icon:''🍱'', lieu:''Pique-nique en forêt'',    desc:''Pause méritée au bord de la rivière. Votre chien peut se baigner !'' },
+{ heure:''15h00'', icon:''🐋'', lieu:''Tadoussac – Observation'', desc:''Croisière aux baleines. Chiens admis sur le pont extérieur. Inoubliable.'' },
 ]},
-{ jour:“Dimanche”, etapes:[
-{ heure:“9h00”,  icon:“🌿”, lieu:“Baie-Saint-Paul – Rando”, desc:“Sentiers bucoliques avec vue sur le fleuve. Chiens très bienvenus.” },
-{ heure:“13h00”, icon:“🚗”, lieu:“Retour Montréal”,         desc:“Des souvenirs plein la tête et un chien épuisé — la combinaison parfaite.” },
+{ jour:''Dimanche'', etapes:[
+{ heure:''9h00'',  icon:''🌿'', lieu:''Baie-Saint-Paul – Rando'', desc:''Sentiers bucoliques avec vue sur le fleuve. Chiens très bienvenus.'' },
+{ heure:''13h00'', icon:''🚗'', lieu:''Retour Montréal'',         desc:''Des souvenirs plein la tête et un chien épuisé — la combinaison parfaite.'' },
 ]},
 ],
 },
-“Laurentides_weekend”: {
-titre:“Ressourcement dans les Laurentides”,
-emoji:“🌲”,
+''Laurentides_weekend'': {
+titre:''Ressourcement dans les Laurentides'',
+emoji:''🌲'',
 jours:[
-{ jour:“Samedi matin”, etapes:[
-{ heure:“8h00”,  icon:“🚗”, lieu:“Départ Montréal”,         desc:“1h30 de route. La nature vous attend !” },
-{ heure:“9h30”,  icon:“🥾”, lieu:“Forêt Ouareau – Rawdon”,  desc:“Sentiers de rivière, cascades, liberté totale pour votre chien.” },
-{ heure:“12h30”, icon:“🍱”, lieu:“Pique-nique au bord de l’eau”, desc:“Cascades en fond sonore. Parfait.” },
+{ jour:''Samedi matin'', etapes:[
+{ heure:''8h00'',  icon:''🚗'', lieu:''Départ Montréal'',         desc:''1h30 de route. La nature vous attend !'' },
+{ heure:''9h30'',  icon:''🥾'', lieu:''Forêt Ouareau – Rawdon'',  desc:''Sentiers de rivière, cascades, liberté totale pour votre chien.'' },
+{ heure:''12h30'', icon:''🍱'', lieu:''Pique-nique au bord de l’eau'', desc:''Cascades en fond sonore. Parfait.'' },
 ]},
-{ jour:“Samedi après-midi”, etapes:[
-{ heure:“14h00”, icon:“⛺”, lieu:“Camping Domaine du Lac Brown”, desc:“Arrivée au camping. Lac privé, forêt dense, zéro stress pour les chiens.” },
-{ heure:“16h00”, icon:“🏊”, lieu:“Baignade au lac”,          desc:“Votre chien va devenir accro à l’eau, c’est garanti.” },
+{ jour:''Samedi après-midi'', etapes:[
+{ heure:''14h00'', icon:''⛺'', lieu:''Camping Domaine du Lac Brown'', desc:''Arrivée au camping. Lac privé, forêt dense, zéro stress pour les chiens.'' },
+{ heure:''16h00'', icon:''🏊'', lieu:''Baignade au lac'',          desc:''Votre chien va devenir accro à l’eau, c’est garanti.'' },
 ]},
-{ jour:“Dimanche”, etapes:[
-{ heure:“9h00”,  icon:“🥾”, lieu:“Sentiers du camping”,     desc:“Exploration matinale en forêt avant le retour.” },
-{ heure:“12h00”, icon:“🚗”, lieu:“Retour Montréal”,         desc:“Week-end accompli. Un chien heureux, un maître ressourcé.” },
+{ jour:''Dimanche'', etapes:[
+{ heure:''9h00'',  icon:''🥾'', lieu:''Sentiers du camping'',     desc:''Exploration matinale en forêt avant le retour.'' },
+{ heure:''12h00'', icon:''🚗'', lieu:''Retour Montréal'',         desc:''Week-end accompli. Un chien heureux, un maître ressourcé.'' },
 ]},
 ],
 },
@@ -232,7 +232,7 @@ jours:[
 
 // ─── UTILS ─────────────────────────────────────────────────────────
 function catColor(id) { return CAT.find(c=>c.id===id)?.color || T.terra; }
-function catIcon(id)  { return CAT.find(c=>c.id===id)?.icon  || “📍”; }
+function catIcon(id)  { return CAT.find(c=>c.id===id)?.icon  || ''📍''; }
 function catLabel(id) { return CAT.find(c=>c.id===id)?.label || id; }
 
 // ─── SHARED UI ─────────────────────────────────────────────────────
@@ -242,9 +242,9 @@ if (!text) return null;
 return (
 <div style={{
 background:T.amberLt, border:`1px solid ${T.amber}50`,
-borderRadius:10, padding:“8px 12px”,
-fontSize:12, color:”#7A5010”, lineHeight:1.6,
-fontFamily:”‘Lora’,Georgia,serif”,
+borderRadius:10, padding:''8px 12px'',
+fontSize:12, color:''#7A5010'', lineHeight:1.6,
+fontFamily:''‘Lora’,Georgia,serif'',
 }}>⚠️ {text}</div>
 );
 }
@@ -253,8 +253,8 @@ function ConfBadge({ n }) {
 return (
 <span style={{
 background:T.sageLt, color:T.sageDk,
-fontSize:10, fontWeight:800, padding:“3px 8px”,
-borderRadius:20, letterSpacing:“0.3px”,
+fontSize:10, fontWeight:800, padding:''3px 8px'',
+borderRadius:20, letterSpacing:''0.3px'',
 }}>✓ {n} Baladours ont confirmé</span>
 );
 }
@@ -262,62 +262,62 @@ borderRadius:20, letterSpacing:“0.3px”,
 function TagChip({ label, color }) {
 return (
 <span style={{
-background: color ? color+“15” : T.cream,
+background: color ? color+''15'' : T.cream,
 color: color || T.deep, border:`1px solid ${color ? color+"30" : T.stone}`,
-fontSize:10, fontWeight:700, padding:“3px 9px”,
-borderRadius:20, letterSpacing:“0.3px”,
+fontSize:10, fontWeight:700, padding:''3px 9px'',
+borderRadius:20, letterSpacing:''0.3px'',
 }}>{label}</span>
 );
 }
 
-function Btn({ children, onClick, variant=“primary”, full, small }) {
+function Btn({ children, onClick, variant=''primary'', full, small }) {
 const styles = {
-primary: { bg:`linear-gradient(135deg,${T.terra},${T.terraDk})`, color:“white”, border:“none”, shadow:`0 4px 16px ${T.terra}35` },
-secondary:{ bg:“white”, color:T.deep, border:`2px solid ${T.stone}`, shadow:“none” },
-sage:     { bg:`linear-gradient(135deg,${T.sage},${T.sageDk})`, color:“white”, border:“none”, shadow:`0 4px 16px ${T.sage}35` },
-ghost:    { bg:T.parch, color:T.muted, border:`1.5px solid ${T.stone}`, shadow:“none” },
+primary: { bg:`linear-gradient(135deg,${T.terra},${T.terraDk})`, color:''white'', border:''none'', shadow:`0 4px 16px ${T.terra}35` },
+secondary:{ bg:''white'', color:T.deep, border:`2px solid ${T.stone}`, shadow:''none'' },
+sage:     { bg:`linear-gradient(135deg,${T.sage},${T.sageDk})`, color:''white'', border:''none'', shadow:`0 4px 16px ${T.sage}35` },
+ghost:    { bg:T.parch, color:T.muted, border:`1.5px solid ${T.stone}`, shadow:''none'' },
 };
 const s = styles[variant];
 return (
 <button onClick={onClick} style={{
-background:s.bg, color:s.color, border:s.border || “none”,
-borderRadius:14, padding: small?“9px 14px”:“13px 18px”,
-fontSize: small?12:14, fontWeight:800, cursor:“pointer”,
-fontFamily:”‘Nunito’,sans-serif”, width:full?“100%”:“auto”,
-boxShadow:s.shadow, letterSpacing:“0.2px”,
-display:“flex”, alignItems:“center”, justifyContent:“center”, gap:6,
+background:s.bg, color:s.color, border:s.border || ''none'',
+borderRadius:14, padding: small?''9px 14px'':''13px 18px'',
+fontSize: small?12:14, fontWeight:800, cursor:''pointer'',
+fontFamily:''‘Nunito’,sans-serif'', width:full?''100%'':''auto'',
+boxShadow:s.shadow, letterSpacing:''0.2px'',
+display:''flex'', alignItems:''center'', justifyContent:''center'', gap:6,
 }}>{children}</button>
 );
 }
 
 function BottomNav({ screen, go }) {
 const tabs = [
-{ id:“home”,       icon:“🏠”, label:“Accueil” },
-{ id:“ville”,      icon:“🏙️”, label:“En ville” },
-{ id:“escapade”,   icon:“🌲”, label:“Escapade” },
-{ id:“contribuer”, icon:“➕”, label:“Contribuer” },
+{ id:''home'',       icon:''🏠'', label:''Accueil'' },
+{ id:''ville'',      icon:''🏙️'', label:''En ville'' },
+{ id:''escapade'',   icon:''🌲'', label:''Escapade'' },
+{ id:''contribuer'', icon:''➕'', label:''Contribuer'' },
 ];
 return (
 <nav style={{
-position:“fixed”, bottom:0, left:“50%”, transform:“translateX(-50%)”,
-width:“100%”, maxWidth:480,
-background:“rgba(251,247,242,0.97)”, backdropFilter:“blur(20px)”,
+position:''fixed'', bottom:0, left:''50%'', transform:''translateX(-50%)'',
+width:''100%'', maxWidth:480,
+background:''rgba(251,247,242,0.97)'', backdropFilter:''blur(20px)'',
 borderTop:`1.5px solid ${T.stone}`,
-padding:“10px 4px 22px”,
-display:“flex”, justifyContent:“space-around”, zIndex:900,
+padding:''10px 4px 22px'',
+display:''flex'', justifyContent:''space-around'', zIndex:900,
 }}>
 {tabs.map(t=>(
 <button key={t.id} onClick={()=>go(t.id)} style={{
-background: screen===t.id ? T.terra+“12” : “none”,
-border:“none”, cursor:“pointer”, borderRadius:12,
-padding:“6px 12px”,
-display:“flex”, flexDirection:“column”, alignItems:“center”, gap:2,
+background: screen===t.id ? T.terra+''12'' : ''none'',
+border:''none'', cursor:''pointer'', borderRadius:12,
+padding:''6px 12px'',
+display:''flex'', flexDirection:''column'', alignItems:''center'', gap:2,
 }}>
 <span style={{ fontSize:22 }}>{t.icon}</span>
-<span style={{ fontSize:9, fontWeight:900, letterSpacing:“0.8px”,
+<span style={{ fontSize:9, fontWeight:900, letterSpacing:''0.8px'',
 color: screen===t.id ? T.terra : T.warm,
-textTransform:“uppercase” }}>{t.label}</span>
-{screen===t.id && <div style={{ width:4, height:4, borderRadius:“50%”, background:T.terra }}/>}
+textTransform:''uppercase'' }}>{t.label}</span>
+{screen===t.id && <div style={{ width:4, height:4, borderRadius:''50%'', background:T.terra }}/>}
 </button>
 ))}
 </nav>
@@ -334,27 +334,27 @@ return (
 <div onClick={()=>onOpen(lieu)} style={{
 background:T.bgCard, borderRadius:20,
 border:`1.5px solid ${T.stone}`,
-padding:16, cursor:“pointer”,
-boxShadow:“0 2px 16px rgba(0,0,0,0.05)”,
-opacity:vis?1:0, transform:vis?“translateY(0)”:“translateY(14px)”,
-transition:“opacity 0.4s ease, transform 0.4s ease”,
+padding:16, cursor:''pointer'',
+boxShadow:''0 2px 16px rgba(0,0,0,0.05)'',
+opacity:vis?1:0, transform:vis?''translateY(0)'':''translateY(14px)'',
+transition:''opacity 0.4s ease, transform 0.4s ease'',
 }}>
 {/* Top row */}
-<div style={{ display:“flex”, justifyContent:“space-between”, alignItems:“flex-start”, marginBottom:6 }}>
+<div style={{ display:''flex'', justifyContent:''space-between'', alignItems:''flex-start'', marginBottom:6 }}>
 <div style={{ flex:1 }}>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:16, fontWeight:800,
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:16, fontWeight:800,
 color:T.bark, lineHeight:1.25 }}>{lieu.name}</div>
 <div style={{ fontSize:11, color:T.muted, fontWeight:700, marginTop:2,
-textTransform:“uppercase”, letterSpacing:“0.5px” }}>
+textTransform:''uppercase'', letterSpacing:''0.5px'' }}>
 {catIcon(lieu.cat)} {catLabel(lieu.cat)} · {lieu.quartier}
 </div>
 </div>
 {lieu.politique && (
 <div style={{
-background:col+“15”, color:col, borderRadius:10,
-padding:“4px 9px”, fontSize:10, fontWeight:800,
-whiteSpace:“nowrap”, marginLeft:8, border:`1px solid ${col}25`,
-}}>🐕 {lieu.politique.split(” “).slice(0,3).join(” “)}</div>
+background:col+''15'', color:col, borderRadius:10,
+padding:''4px 9px'', fontSize:10, fontWeight:800,
+whiteSpace:''nowrap'', marginLeft:8, border:`1px solid ${col}25`,
+}}>🐕 {lieu.politique.split('' '').slice(0,3).join('' '')}</div>
 )}
 </div>
 
@@ -376,9 +376,9 @@ whiteSpace:“nowrap”, marginLeft:8, border:`1px solid ${col}25`,
 
 // ─── BALADOU REPORTER WIDGET ───────────────────────────────────────
 function ReporterWidget({ lieux, onConfirm, onOpenLieu }) {
-const [query, setQuery]       = useState(””);
+const [query, setQuery]       = useState('''');
 const [results, setResults]   = useState([]);
-const [confirmed, setConfirmed] = useState({}); // id -> “ok”|“warn”|“detail”
+const [confirmed, setConfirmed] = useState({}); // id -> ''ok''|''warn''|''detail''
 const [detail, setDetail]     = useState({}); // id -> string
 const [showDetail, setShowDetail] = useState(null);
 
@@ -390,8 +390,8 @@ setResults(fuzzySearch(query, lieux).slice(0, 5));
 
 const handleConfirm = (lieu, type) => {
 setConfirmed(c=>({…c, [lieu.id]:type}));
-if (type===“ok”) onConfirm(lieu.id);
-if (type===“detail”) setShowDetail(lieu.id);
+if (type===''ok'') onConfirm(lieu.id);
+if (type===''detail'') setShowDetail(lieu.id);
 };
 
 return (
@@ -401,14 +401,14 @@ borderRadius:20, padding:16, marginBottom:16,
 border:`1.5px solid ${T.terra}30`,
 }}>
 {/* Header */}
-<div style={{ display:“flex”, alignItems:“center”, gap:10, marginBottom:12 }}>
+<div style={{ display:''flex'', alignItems:''center'', gap:10, marginBottom:12 }}>
 <div style={{
 width:38, height:38, borderRadius:12,
 background:`linear-gradient(135deg,${T.terra},${T.terraDk})`,
-display:“flex”, alignItems:“center”, justifyContent:“center”, fontSize:18,
+display:''flex'', alignItems:''center'', justifyContent:''center'', fontSize:18,
 }}>🐾</div>
 <div>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:15, fontWeight:800,
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:15, fontWeight:800,
 color:T.bark }}>Vous revenez d’une sortie ?</div>
 <div style={{ fontSize:12, color:T.terraDk, lineHeight:1.4 }}>
 Confirmez un lieu en 2 taps — ça aide tout le monde !
@@ -592,16 +592,16 @@ return (
 {/* Hero */}
 <div style={{
 background:`linear-gradient(155deg,${T.soil} 0%,${T.bark} 55%,#2A1808 100%)`,
-padding:“56px 22px 32px”, position:“relative”, overflow:“hidden”,
-opacity:entered?1:0, transition:“opacity 0.6s ease”,
+padding:''56px 22px 32px'', position:''relative'', overflow:''hidden'',
+opacity:entered?1:0, transition:''opacity 0.6s ease'',
 }}>
 {/* Decorative circles */}
-<div style={{ position:“absolute”,top:-60,right:-60,width:240,height:240,
-background:`radial-gradient(circle,${T.terra}22 0%,transparent 70%)`,borderRadius:“50%”,pointerEvents:“none” }}/>
-<div style={{ position:“absolute”,bottom:-40,left:-40,width:160,height:160,
-background:`radial-gradient(circle,${T.sage}18 0%,transparent 70%)`,borderRadius:“50%”,pointerEvents:“none” }}/>
-<div style={{ position:“absolute”,top:“30%”,right:“10%”,width:80,height:80,
-background:`radial-gradient(circle,${T.gold}18 0%,transparent 70%)`,borderRadius:“50%”,pointerEvents:“none” }}/>
+<div style={{ position:''absolute'',top:-60,right:-60,width:240,height:240,
+background:`radial-gradient(circle,${T.terra}22 0%,transparent 70%)`,borderRadius:''50%'',pointerEvents:''none'' }}/>
+<div style={{ position:''absolute'',bottom:-40,left:-40,width:160,height:160,
+background:`radial-gradient(circle,${T.sage}18 0%,transparent 70%)`,borderRadius:''50%'',pointerEvents:''none'' }}/>
+<div style={{ position:''absolute'',top:''30%'',right:''10%'',width:80,height:80,
+background:`radial-gradient(circle,${T.gold}18 0%,transparent 70%)`,borderRadius:''50%'',pointerEvents:''none'' }}/>
 
 ```
     <div style={{ position:"relative" }}>
@@ -721,19 +721,19 @@ background:`radial-gradient(circle,${T.gold}18 0%,transparent 70%)`,borderRadius
 
 // ─── SCREEN: EN VILLE ──────────────────────────────────────────────
 function VilleScreen({ lieux, openLieu }) {
-const [quartier, setQuartier] = useState(””);
-const [cat, setCat] = useState(“all”);
-const [recherche, setRecherche] = useState(””);
+const [quartier, setQuartier] = useState('''');
+const [cat, setCat] = useState(''all'');
+const [recherche, setRecherche] = useState('''');
 
 const cityLieux = lieux.filter(l =>
-[“cafes”,“restos”,“boutiques”,“parcs”,“activites”].includes(l.cat)
+[''cafes'',''restos'',''boutiques'',''parcs'',''activites''].includes(l.cat)
 );
 
 const filtered = useMemo(() => {
 // Filtre quartier et catégorie d’abord
 const prefiltered = cityLieux.filter(l => {
 const matchQ = !quartier || l.quartier === quartier;
-const matchC = cat===“all” || l.cat===cat;
+const matchC = cat===''all'' || l.cat===cat;
 return matchQ && matchC;
 });
 // Puis recherche floue sur le texte
@@ -747,12 +747,12 @@ return (
 {/* Header */}
 <div style={{
 background:`linear-gradient(150deg,${T.bark},#3A2010)`,
-padding:“52px 20px 22px”,
+padding:''52px 20px 22px'',
 }}>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:4 }}>🏙️ En ville</div>
-<p style={{ fontSize:13, color:“rgba(255,255,255,0.55)”,
-fontFamily:”‘Lora’,Georgia,serif”, fontStyle:“italic”, marginBottom:16 }}>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:4 }}>🏙️ En ville</div>
+<p style={{ fontSize:13, color:''rgba(255,255,255,0.55)'',
+fontFamily:''‘Lora’,Georgia,serif'', fontStyle:''italic'', marginBottom:16 }}>
 Trouvez les adresses dog-friendly dans votre quartier
 </p>
 
@@ -838,8 +838,8 @@ Trouvez les adresses dog-friendly dans votre quartier
 
 // ─── SCREEN: ESCAPADE ──────────────────────────────────────────────
 function EscapadeScreen({ lieux, openLieu }) {
-const [mode, setMode] = useState(“accueil”); // accueil | generateur | resultat | randos | campings
-const [prefs, setPrefs] = useState({ destination:””, duree:“weekend”, gabarit:“moyen”, saison:“ete” });
+const [mode, setMode] = useState(''accueil''); // accueil | generateur | resultat | randos | campings
+const [prefs, setPrefs] = useState({ destination:'''', duree:''weekend'', gabarit:''moyen'', saison:''ete'' });
 const [itinerary, setItinerary] = useState(null);
 const [loading, setLoading] = useState(false);
 
@@ -847,72 +847,72 @@ const set = (k,v) => setPrefs(p=>({…p,[k]:v}));
 
 const generate = () => {
 setLoading(true);
-setMode(“loading”);
+setMode(''loading'');
 setTimeout(()=>{
 const key = `${prefs.destination}_${prefs.duree}`;
-const res = ITINERAIRES_ESCAPADE[key] || ITINERAIRES_ESCAPADE[“Charlevoix_weekend”];
+const res = ITINERAIRES_ESCAPADE[key] || ITINERAIRES_ESCAPADE[''Charlevoix_weekend''];
 setItinerary(res);
-setMode(“resultat”);
+setMode(''resultat'');
 setLoading(false);
 }, 2200);
 };
 
-const randos = lieux.filter(l=>l.cat===“randonees”);
-const campings = lieux.filter(l=>l.cat===“campings”);
+const randos = lieux.filter(l=>l.cat===''randonees'');
+const campings = lieux.filter(l=>l.cat===''campings'');
 
-if (mode===“randos”) return (
+if (mode===''randos'') return (
 <div style={{ paddingBottom:100 }}>
-<div style={{ background:`linear-gradient(150deg,#3A4A20,#2A3A15)`, padding:“52px 20px 22px” }}>
-<button onClick={()=>setMode(“accueil”)} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:14, fontFamily:”‘Nunito’,sans-serif”,
+<div style={{ background:`linear-gradient(150deg,#3A4A20,#2A3A15)`, padding:''52px 20px 22px'' }}>
+<button onClick={()=>setMode(''accueil'')} style={{
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:14, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Retour</button>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:4 }}>🥾 Randonnées</div>
-<p style={{ fontSize:13, color:“rgba(255,255,255,0.55)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>Sentiers dog-friendly au Québec · Infos saisonnières incluses</p>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:4 }}>🥾 Randonnées</div>
+<p style={{ fontSize:13, color:''rgba(255,255,255,0.55)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>Sentiers dog-friendly au Québec · Infos saisonnières incluses</p>
 </div>
-<div style={{ padding:“16px 16px 0”, display:“flex”, flexDirection:“column”, gap:12 }}>
+<div style={{ padding:''16px 16px 0'', display:''flex'', flexDirection:''column'', gap:12 }}>
 {randos.map((l,i)=><LieuCard key={l.id} lieu={l} onOpen={openLieu} idx={i} />)}
 </div>
 </div>
 );
 
-if (mode===“campings”) return (
+if (mode===''campings'') return (
 <div style={{ paddingBottom:100 }}>
-<div style={{ background:`linear-gradient(150deg,#3A3A20,#2A2A15)`, padding:“52px 20px 22px” }}>
-<button onClick={()=>setMode(“accueil”)} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:14, fontFamily:”‘Nunito’,sans-serif”,
+<div style={{ background:`linear-gradient(150deg,#3A3A20,#2A2A15)`, padding:''52px 20px 22px'' }}>
+<button onClick={()=>setMode(''accueil'')} style={{
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:14, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Retour</button>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:4 }}>⛺ Campings</div>
-<p style={{ fontSize:13, color:“rgba(255,255,255,0.55)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>Campings dog-friendly · Saison estivale 2026</p>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:4 }}>⛺ Campings</div>
+<p style={{ fontSize:13, color:''rgba(255,255,255,0.55)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>Campings dog-friendly · Saison estivale 2026</p>
 </div>
-<div style={{ padding:“16px 16px 0”, display:“flex”, flexDirection:“column”, gap:12 }}>
+<div style={{ padding:''16px 16px 0'', display:''flex'', flexDirection:''column'', gap:12 }}>
 {campings.map((l,i)=><LieuCard key={l.id} lieu={l} onOpen={openLieu} idx={i} />)}
 </div>
 </div>
 );
 
-if (mode===“generateur”) return (
+if (mode===''generateur'') return (
 <div style={{ paddingBottom:100 }}>
-<div style={{ background:`linear-gradient(150deg,${T.bark},#2A3A18)`, padding:“52px 20px 22px” }}>
-<button onClick={()=>setMode(“accueil”)} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:14, fontFamily:”‘Nunito’,sans-serif”,
+<div style={{ background:`linear-gradient(150deg,${T.bark},#2A3A18)`, padding:''52px 20px 22px'' }}>
+<button onClick={()=>setMode(''accueil'')} style={{
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:14, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Retour</button>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:4 }}>✨ Générer mon escapade</div>
-<p style={{ fontSize:13, color:“rgba(255,255,255,0.55)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>Dites-nous vos envies, on s’occupe du reste</p>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:4 }}>✨ Générer mon escapade</div>
+<p style={{ fontSize:13, color:''rgba(255,255,255,0.55)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>Dites-nous vos envies, on s’occupe du reste</p>
 </div>
-<div style={{ padding:“16px 16px 0” }}>
-<div style={{ background:“white”, borderRadius:20, padding:18, border:`1.5px solid ${T.stone}` }}>
+<div style={{ padding:''16px 16px 0'' }}>
+<div style={{ background:''white'', borderRadius:20, padding:18, border:`1.5px solid ${T.stone}` }}>
 
 ```
       {/* Destination */}
@@ -964,37 +964,37 @@ fontStyle:“italic” }}>Dites-nous vos envies, on s’occupe du reste</p>
 
 );
 
-if (mode===“loading”) return (
-<div style={{ display:“flex”, flexDirection:“column”, alignItems:“center”,
-justifyContent:“center”, height:“80vh”, paddingBottom:100 }}>
+if (mode===''loading'') return (
+<div style={{ display:''flex'', flexDirection:''column'', alignItems:''center'',
+justifyContent:''center'', height:''80vh'', paddingBottom:100 }}>
 <div style={{ fontSize:56, marginBottom:20,
-animation:“pawbounce 0.7s ease-in-out infinite alternate” }}>🐾</div>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:20, color:T.bark,
+animation:''pawbounce 0.7s ease-in-out infinite alternate'' }}>🐾</div>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:20, color:T.bark,
 marginBottom:8 }}>On prépare votre aventure…</div>
 <div style={{ fontSize:13, color:T.muted }}>Recherche des meilleurs spots dog-friendly</div>
 <style>{`@keyframes pawbounce{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-18px) rotate(5deg)}}`}</style>
 </div>
 );
 
-if (mode===“resultat” && itinerary) return (
+if (mode===''resultat'' && itinerary) return (
 <div style={{ paddingBottom:100 }}>
 <div style={{
 background:`linear-gradient(150deg,${T.bark},#2A3A18)`,
-padding:“52px 20px 28px”,
+padding:''52px 20px 28px'',
 }}>
-<button onClick={()=>setMode(“generateur”)} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:14, fontFamily:”‘Nunito’,sans-serif”,
+<button onClick={()=>setMode(''generateur'')} style={{
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:14, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Modifier</button>
 <div style={{ fontSize:44, marginBottom:8 }}>{itinerary.emoji}</div>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, lineHeight:1.2, marginBottom:6 }}>{itinerary.titre}</div>
-<div style={{ display:“flex”, gap:8, flexWrap:“wrap” }}>
-{[prefs.destination, prefs.duree===“weekend”?“Weekend”:“Semaine”,
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', lineHeight:1.2, marginBottom:6 }}>{itinerary.titre}</div>
+<div style={{ display:''flex'', gap:8, flexWrap:''wrap'' }}>
+{[prefs.destination, prefs.duree===''weekend''?''Weekend'':''Semaine'',
 prefs.saison.charAt(0).toUpperCase()+prefs.saison.slice(1)].filter(Boolean).map((v,i)=>(
-<span key={i} style={{ background:“rgba(255,255,255,0.15)”, borderRadius:8,
-padding:“4px 10px”, fontSize:11, color:“rgba(255,255,255,0.85)”, fontWeight:700 }}>{v}</span>
+<span key={i} style={{ background:''rgba(255,255,255,0.15)'', borderRadius:8,
+padding:''4px 10px'', fontSize:11, color:''rgba(255,255,255,0.85)'', fontWeight:700 }}>{v}</span>
 ))}
 </div>
 </div>
@@ -1058,14 +1058,14 @@ return (
 <div style={{ paddingBottom:100 }}>
 <div style={{
 background:`linear-gradient(150deg,${T.bark},#2C3A18)`,
-padding:“52px 20px 28px”, position:“relative”, overflow:“hidden”,
+padding:''52px 20px 28px'', position:''relative'', overflow:''hidden'',
 }}>
-<div style={{ position:“absolute”,top:-40,right:-40,width:180,height:180,
-background:`radial-gradient(circle,${T.sage}20 0%,transparent 70%)`,borderRadius:“50%”,pointerEvents:“none” }}/>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:6 }}>🌲 Escapade</div>
-<p style={{ fontSize:14, color:“rgba(255,255,255,0.6)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>Weekends, randonnées et campings dog-friendly au Québec</p>
+<div style={{ position:''absolute'',top:-40,right:-40,width:180,height:180,
+background:`radial-gradient(circle,${T.sage}20 0%,transparent 70%)`,borderRadius:''50%'',pointerEvents:''none'' }}/>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:6 }}>🌲 Escapade</div>
+<p style={{ fontSize:14, color:''rgba(255,255,255,0.6)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>Weekends, randonnées et campings dog-friendly au Québec</p>
 </div>
 
 ```
@@ -1142,8 +1142,8 @@ fontStyle:“italic” }}>Weekends, randonnées et campings dog-friendly au Qué
 function FormField({ label, fieldKey, placeholder, multi, required, form, errors, onChange }) {
 return (
 <div style={{ marginBottom:14 }}>
-<label style={{ fontSize:11, fontWeight:900, color:T.muted, textTransform:“uppercase”,
-letterSpacing:“0.8px”, display:“block”, marginBottom:5 }}>
+<label style={{ fontSize:11, fontWeight:900, color:T.muted, textTransform:''uppercase'',
+letterSpacing:''0.8px'', display:''block'', marginBottom:5 }}>
 {label}{required && <span style={{ color:T.terra }}> *</span>}
 </label>
 {multi ? (
@@ -1152,11 +1152,11 @@ value={form[fieldKey]}
 onChange={e=>onChange(fieldKey, e.target.value)}
 placeholder={placeholder} rows={3}
 style={{
-width:“100%”, borderRadius:12,
+width:''100%'', borderRadius:12,
 border:`2px solid ${errors[fieldKey]?T.terra:T.stone}`,
-padding:“10px 12px”, fontSize:14, color:T.bark, outline:“none”,
-fontFamily:”‘Lora’,Georgia,serif”, resize:“vertical”,
-background:errors[fieldKey]?”#FFF5F5”:“white”, lineHeight:1.55,
+padding:''10px 12px'', fontSize:14, color:T.bark, outline:''none'',
+fontFamily:''‘Lora’,Georgia,serif'', resize:''vertical'',
+background:errors[fieldKey]?''#FFF5F5'':''white'', lineHeight:1.55,
 }}/>
 ) : (
 <input
@@ -1164,11 +1164,11 @@ value={form[fieldKey]}
 onChange={e=>onChange(fieldKey, e.target.value)}
 placeholder={placeholder}
 style={{
-width:“100%”, borderRadius:12,
+width:''100%'', borderRadius:12,
 border:`2px solid ${errors[fieldKey]?T.terra:T.stone}`,
-padding:“10px 12px”, fontSize:14, color:T.bark, outline:“none”,
-fontFamily:”‘Nunito’,sans-serif”,
-background:errors[fieldKey]?”#FFF5F5”:“white”,
+padding:''10px 12px'', fontSize:14, color:T.bark, outline:''none'',
+fontFamily:''‘Nunito’,sans-serif'',
+background:errors[fieldKey]?''#FFF5F5'':''white'',
 }}/>
 )}
 {errors[fieldKey] && <div style={{ fontSize:11, color:T.terra, marginTop:3 }}>Champ obligatoire</div>}
@@ -1180,9 +1180,9 @@ background:errors[fieldKey]?”#FFF5F5”:“white”,
 function ContribuerScreen({ onAdd, lieux }) {
 const [etape, setEtape] = useState(0);
 const [form, setForm] = useState({
-mode:“ville”, cat:“cafes”, nom:””, quartier:””, autreQuartier:””,
-adresse:””, politique:””, horaires:””, tel:””, desc:””, saison:””,
-sentiers:””, difficulte:””, distance:””, saison_ouverture:””, prenom:””, chien:””,
+mode:''ville'', cat:''cafes'', nom:'''', quartier:'''', autreQuartier:'''',
+adresse:'''', politique:'''', horaires:'''', tel:'''', desc:'''', saison:'''',
+sentiers:'''', difficulte:'''', distance:'''', saison_ouverture:'''', prenom:'''', chien:'''',
 });
 const [errors, setErrors] = useState({});
 const [doublons, setDoublons] = useState([]);
@@ -1191,11 +1191,11 @@ const [doubalonIgnored, setDoublonIgnored] = useState(false);
 const set = (k,v) => {
 setForm(f=>({…f,[k]:v}));
 // Recherche floue de doublons en temps réel
-if (k===“nom” && v.trim().length >= 3) {
+if (k===''nom'' && v.trim().length >= 3) {
 const found = fuzzySearch(v, lieux).slice(0, 3);
 setDoublons(found);
 setDoublonIgnored(false);
-} else if (k===“nom” && v.trim().length < 3) {
+} else if (k===''nom'' && v.trim().length < 3) {
 setDoublons([]);
 }
 };
@@ -1209,8 +1209,8 @@ setErrors(e);
 return Object.keys(e).length===0;
 };
 
-const quartierFinal = form.quartier===“Autre”
-? (form.autreQuartier||“Autre”).trim()
+const quartierFinal = form.quartier===''Autre''
+? (form.autreQuartier||''Autre'').trim()
 : form.quartier;
 
 const submit = () => {
@@ -1238,13 +1238,13 @@ setEtape(2);
 if (etape===0) return (
 <div style={{ paddingBottom:100 }}>
 <div style={{ background:`linear-gradient(150deg,${T.bark},${T.sageDk})`,
-padding:“52px 20px 28px”, position:“relative”, overflow:“hidden” }}>
-<div style={{ position:“absolute”,top:-40,right:-40,width:160,height:160,
-background:`radial-gradient(circle,${T.sage}25 0%,transparent 70%)`,borderRadius:“50%”,pointerEvents:“none” }}/>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white”, marginBottom:6 }}>➕ Contribuer</div>
-<p style={{ fontSize:14, color:“rgba(255,255,255,0.6)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>Ensemble, on construit la meilleure ressource dog-friendly du Québec</p>
+padding:''52px 20px 28px'', position:''relative'', overflow:''hidden'' }}>
+<div style={{ position:''absolute'',top:-40,right:-40,width:160,height:160,
+background:`radial-gradient(circle,${T.sage}25 0%,transparent 70%)`,borderRadius:''50%'',pointerEvents:''none'' }}/>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'', marginBottom:6 }}>➕ Contribuer</div>
+<p style={{ fontSize:14, color:''rgba(255,255,255,0.6)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>Ensemble, on construit la meilleure ressource dog-friendly du Québec</p>
 </div>
 
 ```
@@ -1310,35 +1310,35 @@ fontStyle:“italic” }}>Ensemble, on construit la meilleure ressource dog-frie
 if (etape===2) return (
 <div style={{ paddingBottom:100 }}>
 <div style={{ background:`linear-gradient(150deg,${T.sageDk},#3A6A48)`,
-padding:“52px 20px 24px” }}>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:24, fontWeight:900,
-color:“white” }}>Merci ! 🎉</div>
+padding:''52px 20px 24px'' }}>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:24, fontWeight:900,
+color:''white'' }}>Merci ! 🎉</div>
 </div>
-<div style={{ padding:“40px 20px”, textAlign:“center” }}>
+<div style={{ padding:''40px 20px'', textAlign:''center'' }}>
 <div style={{ fontSize:72, marginBottom:16 }}>🐾</div>
-<h3 style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:22, color:T.bark,
+<h3 style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:22, color:T.bark,
 marginBottom:10 }}>Lieu ajouté avec succès !</h3>
-<p style={{ fontFamily:”‘Lora’,Georgia,serif”, fontSize:15, color:T.deep,
+<p style={{ fontFamily:''‘Lora’,Georgia,serif'', fontSize:15, color:T.deep,
 lineHeight:1.7, marginBottom:24 }}>
 Merci de contribuer à la communauté Baladou. Votre ajout est maintenant visible dans l’application.
 </p>
 <div style={{ background:T.sageLt, borderRadius:16, padding:16, marginBottom:24,
-border:`1.5px solid ${T.sage}40`, textAlign:“left” }}>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:16, fontWeight:800,
+border:`1.5px solid ${T.sage}40`, textAlign:''left'' }}>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:16, fontWeight:800,
 color:T.bark, marginBottom:4 }}>{form.nom}</div>
 <div style={{ fontSize:12, color:T.muted }}>
-📍 {form.quartier===“Autre”?form.autreQuartier:form.quartier} · {CAT.find(c=>c.id===form.cat)?.label}
+📍 {form.quartier===''Autre''?form.autreQuartier:form.quartier} · {CAT.find(c=>c.id===form.cat)?.label}
 </div>
 <div style={{ fontSize:12, color:T.sage, fontWeight:700, marginTop:6 }}>
 🐕 {form.politique}
 </div>
 {form.prenom && (
-<div style={{ fontSize:12, color:T.muted, marginTop:6, fontStyle:“italic” }}>
-Ajouté par {form.prenom}{form.chien ? ` & ${form.chien}` : “”}
+<div style={{ fontSize:12, color:T.muted, marginTop:6, fontStyle:''italic'' }}>
+Ajouté par {form.prenom}{form.chien ? ` & ${form.chien}` : ''''}
 </div>
 )}
 </div>
-<Btn onClick={()=>{ setEtape(0); setForm({ mode:“ville”,cat:“cafes”,nom:””,quartier:””,autreQuartier:””,adresse:””,politique:””,horaires:””,tel:””,desc:””,saison:””,sentiers:””,difficulte:””,distance:””,saison_ouverture:””,prenom:””,chien:”” }); setErrors({}); }} full>
+<Btn onClick={()=>{ setEtape(0); setForm({ mode:''ville'',cat:''cafes'',nom:'''',quartier:'''',autreQuartier:'''',adresse:'''',politique:'''',horaires:'''',tel:'''',desc:'''',saison:'''',sentiers:'''',difficulte:'''',distance:'''',saison_ouverture:'''',prenom:'''',chien:'''' }); setErrors({}); }} full>
 Ajouter un autre lieu
 </Btn>
 </div>
@@ -1348,16 +1348,16 @@ Ajouter un autre lieu
 return (
 <div style={{ paddingBottom:100 }}>
 <div style={{ background:`linear-gradient(150deg,${T.bark},${T.sageDk})`,
-padding:“52px 20px 22px” }}>
+padding:''52px 20px 22px'' }}>
 <button onClick={()=>setEtape(0)} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:14, fontFamily:”‘Nunito’,sans-serif”,
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:14, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Retour</button>
-<div style={{ fontFamily:”‘Fraunces’,Georgia,serif”, fontSize:22, fontWeight:900,
-color:“white”, marginBottom:4 }}>📍 Ajouter un lieu</div>
-<p style={{ fontSize:13, color:“rgba(255,255,255,0.55)”, fontFamily:”‘Lora’,Georgia,serif”,
-fontStyle:“italic” }}>4 champs obligatoires · 60 secondes</p>
+<div style={{ fontFamily:''‘Fraunces’,Georgia,serif'', fontSize:22, fontWeight:900,
+color:''white'', marginBottom:4 }}>📍 Ajouter un lieu</div>
+<p style={{ fontSize:13, color:''rgba(255,255,255,0.55)'', fontFamily:''‘Lora’,Georgia,serif'',
+fontStyle:''italic'' }}>4 champs obligatoires · 60 secondes</p>
 </div>
 
 ```
@@ -1632,12 +1632,12 @@ fontStyle:“italic” }}>4 champs obligatoires · 60 secondes</p>
 
 // ─── SCREEN: FICHE DÉTAILLÉE ───────────────────────────────────────
 function FicheScreen({ lieu, goBack, onConfirm }) {
-const [confirmedStatus, setConfirmedStatus] = useState(null); // null | “ok” | “warn” | “sent”
-const [correctionText, setCorrectionText] = useState(””);
+const [confirmedStatus, setConfirmedStatus] = useState(null); // null | ''ok'' | ''warn'' | ''sent''
+const [correctionText, setCorrectionText] = useState('''');
 const col = catColor(lieu.cat);
 
 const handleConfirmOk = () => {
-setConfirmedStatus(“ok”);
+setConfirmedStatus(''ok'');
 onConfirm(lieu.id);
 };
 
@@ -1646,12 +1646,12 @@ return (
 {/* Hero */}
 <div style={{
 background:`linear-gradient(150deg,${T.bark},${col}CC)`,
-padding:“52px 20px 28px”,
+padding:''52px 20px 28px'',
 }}>
 <button onClick={goBack} style={{
-background:“rgba(255,255,255,0.15)”, border:“none”, borderRadius:10,
-padding:“7px 14px”, color:“white”, fontSize:12, fontWeight:700,
-cursor:“pointer”, marginBottom:16, fontFamily:”‘Nunito’,sans-serif”,
+background:''rgba(255,255,255,0.15)'', border:''none'', borderRadius:10,
+padding:''7px 14px'', color:''white'', fontSize:12, fontWeight:700,
+cursor:''pointer'', marginBottom:16, fontFamily:''‘Nunito’,sans-serif'',
 }}>← Retour</button>
 
 ```
@@ -1833,10 +1833,10 @@ cursor:“pointer”, marginBottom:16, fontFamily:”‘Nunito’,sans-serif”,
 
 // ─── APP ROOT ──────────────────────────────────────────────────────
 export default function Baladou() {
-const [screen, setScreen]     = useState(“home”);
+const [screen, setScreen]     = useState(''home'');
 const [lieux, setLieux]       = useState(LIEUX);
 const [fiche, setFiche]       = useState(null);
-const [prev, setPrev]         = useState(“home”);
+const [prev, setPrev]         = useState(''home'');
 
 // Charger Fuse.js au démarrage
 useEffect(() => { loadFuse(); }, []);
@@ -1846,7 +1846,7 @@ const go = (s) => setScreen(s);
 const openLieu = (lieu) => {
 setPrev(screen);
 setFiche(lieu);
-setScreen(“fiche”);
+setScreen(''fiche'');
 };
 
 const goBack = () => {
@@ -1870,16 +1870,16 @@ fiche:     fiche ? <FicheScreen lieu={fiche} goBack={goBack} onConfirm={confirmL
 
 return (
 <div style={{
-fontFamily:”‘Nunito’,sans-serif”,
-background:T.bg, minHeight:“100vh”,
-maxWidth:480, margin:“0 auto”,
-position:“relative”, overflowX:“hidden”,
+fontFamily:''‘Nunito’,sans-serif'',
+background:T.bg, minHeight:''100vh'',
+maxWidth:480, margin:''0 auto'',
+position:''relative'', overflowX:''hidden'',
 }}>
 <style>{`@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800;900&display=swap'); *{box-sizing:border-box;margin:0;padding:0;} ::-webkit-scrollbar{width:3px;} ::-webkit-scrollbar-thumb{background:#C8BAA8;border-radius:10px;} input::placeholder,textarea::placeholder{color:#B5A08A;} button{transition:opacity 0.15s,transform 0.15s;} button:active{opacity:0.82;transform:scale(0.97);} select option{color:#1E140A;}`}</style>
-<div style={{ overflowY:“auto”, height:“100vh”, paddingBottom: screen===“fiche”?0:0 }}>
+<div style={{ overflowY:''auto'', height:''100vh'', paddingBottom: screen===''fiche''?0:0 }}>
 {screens[screen] || screens.home}
 </div>
-{screen !== “fiche” && <BottomNav screen={screen} go={go} />}
+{screen !== ''fiche'' && <BottomNav screen={screen} go={go} />}
 </div>
 );
 }
