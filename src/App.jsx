@@ -428,7 +428,7 @@ Confirmez un lieu en 2 taps — ça aide tout le monde !
     <input
       value={query}
       onChange={e=>setQuery(e.target.value)}
-      placeholder="Tapez le nom du lieu visité..."
+      placeholder="Tapez le nom du lieu visité. . ."
       style={{
         background:"none", border:"none", color:T.bark,
         fontSize:14, flex:1, fontFamily:"'Nunito',sans-serif", outline:"none",
@@ -485,8 +485,8 @@ Confirmez un lieu en 2 taps — ça aide tout le monde !
                 </div>
                 <textarea
                   value={detail[lieu.id]||""}
-                  onChange={e=>setDetail(d=>({...d,[lieu.id]:e.target.value}))}
-                  placeholder="Ex : La terrasse est maintenant fermée aux chiens..."
+                  onChange={e=>setDetail(d=>({. . .d,[lieu.id]:e.target.value}))}
+                  placeholder="Ex : La terrasse est maintenant fermée aux chiens. . ."
                   rows={2}
                   style={{
                     width:"100%", borderRadius:10, border:`1.5px solid ${T.amber}50`,
@@ -495,7 +495,7 @@ Confirmez un lieu en 2 taps — ça aide tout le monde !
                     background:T.amberLt,
                   }}
                 />
-                <button onClick={()=>setConfirmed(c=>({...c,[lieu.id]:"sent"}))} style={{
+                <button onClick={()=>setConfirmed(c=>({. . .c,[lieu.id]:"sent"}))} style={{
                   marginTop:6, background:T.amber, color:"white", border:"none",
                   borderRadius:8, padding:"7px 14px", fontSize:12, fontWeight:800,
                   cursor:"pointer", fontFamily:"'Nunito',sans-serif",
@@ -518,8 +518,8 @@ Confirmez un lieu en 2 taps — ça aide tout le monde !
                 </div>
                 <textarea
                   value={detail[lieu.id]||""}
-                  onChange={e=>setDetail(d=>({...d,[lieu.id]:e.target.value}))}
-                  placeholder="Ex : Ils acceptent maintenant les chiens à l'intérieur le soir..."
+                  onChange={e=>setDetail(d=>({. . .d,[lieu.id]:e.target.value}))}
+                  placeholder="Ex : Ils acceptent maintenant les chiens à l'intérieur le soir. . ."
                   rows={2}
                   style={{
                     width:"100%", borderRadius:10, border:`1.5px solid ${T.slate}40`,
@@ -527,7 +527,7 @@ Confirmez un lieu en 2 taps — ça aide tout le monde !
                     fontFamily:"'Lora',Georgia,serif", resize:"none", background:T.slateLt,
                   }}
                 />
-                <button onClick={()=>setConfirmed(c=>({...c,[lieu.id]:"sent"}))} style={{
+                <button onClick={()=>setConfirmed(c=>({. . .c,[lieu.id]:"sent"}))} style={{
                   marginTop:6, background:T.slate, color:"white", border:"none",
                   borderRadius:8, padding:"7px 14px", fontSize:12, fontWeight:800,
                   cursor:"pointer", fontFamily:"'Nunito',sans-serif",
@@ -763,7 +763,7 @@ Trouvez les adresses dog-friendly dans votre quartier
       border:"1.5px solid rgba(255,255,255,0.12)", marginBottom:10 }}>
       <span style={{ fontSize:16, opacity:0.6 }}>🔍</span>
       <input value={recherche} onChange={e=>setRecherche(e.target.value)}
-        placeholder="Rechercher un lieu..."
+        placeholder="Rechercher un lieu. . ."
         style={{ background:"none", border:"none", color:"white", fontSize:14,
           flex:1, fontFamily:"'Nunito',sans-serif", outline:"none" }}/>
       {recherche && <span onClick={()=>setRecherche("")} style={{ fontSize:14,
@@ -924,7 +924,7 @@ fontStyle:"italic" }}>Dites-nous vos envies, on s’occupe du reste</p>
           padding:"10px 14px", fontSize:14, color:T.bark,
           fontFamily:"'Nunito',sans-serif", outline:"none", background:"white",
         }}>
-          <option value="">Choisir une région...</option>
+          <option value="">Choisir une région. . .</option>
           {DESTINATIONS_ESCAPADE.map(d=><option key={d} value={d}>{d}</option>)}
         </select>
       </div>
@@ -1281,7 +1281,7 @@ fontStyle:"italic" }}>Ensemble, on construit la meilleure ressource dog-friendly
           <div style={{ fontFamily:"'Fraunces',Georgia,serif", fontSize:16, fontWeight:800,
             color:"white" }}>Ajouter un lieu</div>
           <div style={{ fontSize:12, color:"rgba(255,255,255,0.7)", marginTop:2 }}>
-            Café, resto, parc, camping, boutique...
+            Café, resto, parc, camping, boutique. . .
           </div>
         </div>
         <span style={{ marginLeft:"auto", color:"rgba(255,255,255,0.7)", fontSize:20 }}>→</span>
@@ -1367,7 +1367,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
     <div style={{ background:"white", borderRadius:18, padding:16, marginBottom:12,
       border:`1.5px solid ${T.stone}` }}>
       <div style={{ fontSize:11, fontWeight:900, color:T.muted, textTransform:"uppercase",
-        letterSpacing:"0.8px", marginBottom:12 }}>C'est plutôt...</div>
+        letterSpacing:"0.8px", marginBottom:12 }}>C'est plutôt. . .</div>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
         <button onClick={()=>set("mode","ville")} style={{
           padding:"12px", borderRadius:14, border:"2px solid",
@@ -1379,7 +1379,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
           <div style={{ fontFamily:"'Fraunces',Georgia,serif", fontSize:14, fontWeight:800,
             color: form.mode==="ville" ? T.terraDk : T.bark }}>En ville</div>
           <div style={{ fontSize:11, color:T.muted, marginTop:2, lineHeight:1.4 }}>
-            Café, resto, boutique, parc à chiens...
+            Café, resto, boutique, parc à chiens. . .
           </div>
         </button>
         <button onClick={()=>set("mode","escapade")} style={{
@@ -1392,7 +1392,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
           <div style={{ fontFamily:"'Fraunces',Georgia,serif", fontSize:14, fontWeight:800,
             color: form.mode==="escapade" ? T.sageDk : T.bark }}>Escapade</div>
           <div style={{ fontSize:11, color:T.muted, marginTop:2, lineHeight:1.4 }}>
-            Randonnée, camping, hébergement...
+            Randonnée, camping, hébergement. . .
           </div>
         </button>
       </div>
@@ -1442,7 +1442,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
         }}>
           <div style={{ fontFamily:"'Fraunces',Georgia,serif", fontSize:14, fontWeight:800,
             color:"#8B5E2A", marginBottom:10 }}>
-            🔍 Ce lieu existe peut-être déjà...
+            🔍 Ce lieu existe peut-être déjà. . .
           </div>
           {doublons.slice(0,3).map(d=>(
             <div key={d.id} style={{
@@ -1492,7 +1492,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
           fontFamily:"'Nunito',sans-serif", outline:"none",
           background:errors.quartier?"#FFF5F5":"white",
         }}>
-          <option value="">Choisir {form.mode==="ville" ? "un quartier" : "une région"}...</option>
+          <option value="">Choisir {form.mode==="ville" ? "un quartier" : "une région"}. . .</option>
           {form.mode==="ville" ? (
             <>
               <optgroup label="Montréal">
@@ -1520,7 +1520,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
         </select>
         {form.quartier==="Autre" && (
           <input value={form.autreQuartier||""} onChange={e=>set("autreQuartier",e.target.value)}
-            placeholder="Précisez la ville ou région..."
+            placeholder="Précisez la ville ou région. . ."
             style={{ width:"100%", borderRadius:12, border:`2px solid ${T.stone}`,
               padding:"10px 12px", fontSize:14, color:T.bark, outline:"none",
               fontFamily:"'Nunito',sans-serif", marginTop:8 }}/>
@@ -1534,9 +1534,9 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
         form={form} errors={errors} onChange={set} />
 
       <FormField fieldKey="desc" label="Description" placeholder={
-        form.cat==="randonees" ? "Décrivez les sentiers, le paysage, pourquoi c'est idéal avec un chien..." :
-        form.cat==="campings"  ? "Décrivez le camping, l'environnement, les services pour les chiens..." :
-        "Décrivez pourquoi c'est dog-friendly, l'ambiance..."
+        form.cat==="randonees" ? "Décrivez les sentiers, le paysage, pourquoi c'est idéal avec un chien. . ." :
+        form.cat==="campings"  ? "Décrivez le camping, l'environnement, les services pour les chiens. . ." :
+        "Décrivez pourquoi c'est dog-friendly, l'ambiance. . ."
       } multi required form={form} errors={errors} onChange={set} />
 
       {/* Champs spécifiques Randonnées */}
@@ -1553,7 +1553,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
               style={{ width:"100%", borderRadius:12, border:`2px solid ${T.stone}`,
                 padding:"10px 12px", fontSize:13, color:T.bark,
                 fontFamily:"'Nunito',sans-serif", outline:"none" }}>
-              <option value="">Choisir...</option>
+              <option value="">Choisir. . .</option>
               <option value="Facile">🟢 Facile</option>
               <option value="Modéré">🟡 Modéré</option>
               <option value="Difficile">🔴 Difficile</option>
@@ -1584,7 +1584,7 @@ fontStyle:"italic" }}>4 champs obligatoires · 60 secondes</p>
         placeholder={
           form.cat==="randonees" ? "Ex : En laisse obligatoire sur tous les sentiers" :
           form.cat==="campings"  ? "Ex : Chiens acceptés, en laisse hors de l'emplacement" :
-          "Ex : Terrasse uniquement / Hors-laisse désigné..."
+          "Ex : Terrasse uniquement / Hors-laisse désigné. . ."
         }
         form={form} errors={errors} onChange={set} />
 
@@ -1770,7 +1770,7 @@ cursor:"pointer", marginBottom:16, fontFamily:"‘Nunito’,sans-serif",
           <textarea
             value={correctionText}
             onChange={e=>setCorrectionText(e.target.value)}
-            placeholder="Ex : La terrasse est maintenant fermée aux chiens..."
+            placeholder="Ex : La terrasse est maintenant fermée aux chiens. . ."
             rows={3}
             style={{
               width:"100%", borderRadius:12, border:`1.5px solid ${T.amber}60`,
