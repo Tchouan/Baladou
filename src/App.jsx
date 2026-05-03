@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from “react”;
+import { useState, useEffect, useCallback, useMemo } from''react'';
 
 // ─── FUSE.JS — Fuzzy search (chargé depuis CDN) ───────────────────
 let FuseLib = null;
