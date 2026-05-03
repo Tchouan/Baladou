@@ -35,8 +35,8 @@ const SYNONYMES = {
 function normalize(str) {
 return str.toLowerCase()
 .normalize(''NFD'').replace(/[\u0300-\u036f]/g, '''')
-.replace(/[^a-z0-9\s]/g, '' '')
-.replace(/\s+/g, '' '').trim();
+.replace(/[^a-z0-9\s]/g, '''')
+.replace(/\s+/g, '''').trim();
 }
 
 // Recherche floue enrichie avec synonymes
@@ -66,7 +66,7 @@ const termes = [q, …synonymsForQuery];
 
 return lieux.filter(l => {
 const haystack = normalize(
-[l.name, l.quartier, l.desc, …(l.tags||[]), l.politique||'''', l.adresse||''''].join('' '')
+[l.name, l.quartier, l.desc, …(l.tags||[]), l.politique||'''', l.adresse||''''].join('''')
 );
 return termes.some(t => haystack.includes(t));
 });
@@ -354,7 +354,7 @@ textTransform:''uppercase'', letterSpacing:''0.5px'' }}>
 background:col+''15'', color:col, borderRadius:10,
 padding:''4px 9px'', fontSize:10, fontWeight:800,
 whiteSpace:''nowrap'', marginLeft:8, border:`1px solid ${col}25`,
-}}>🐕 {lieu.politique.split('' '').slice(0,3).join('' '')}</div>
+}}>🐕 {lieu.politique.split('''').slice(0,3).join('''')}</div>
 )}
 </div>
 
@@ -1720,7 +1720,7 @@ cursor:''pointer'', marginBottom:16, fontFamily:''‘Nunito’,sans-serif'',
         </div>
       ))}
       <a
-        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((lieu.adresse||lieu.name) + ' ' + lieu.quartier)}`}
+        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((lieu.adresse||lieu.name) + '' + lieu.quartier)}`}
         target="_self"
         rel="noopener noreferrer"
         style={{
