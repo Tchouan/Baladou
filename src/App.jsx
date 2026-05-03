@@ -62,11 +62,11 @@ if (fuseResults.length > 0) return fuseResults;
 const synonymsForQuery = Object.entries(SYNONYMES)
 .filter(([k]) => q.includes(normalize(k)))
 .flatMap(([,v]) => v);
-const termes = [q, …synonymsForQuery];
+const termes = [q, ...synonymsForQuery];
 
 return lieux.filter(l => {
 const haystack = normalize(
-[l.name, l.quartier, l.desc, …(l.tags||[]), l.politique||"", l.adresse||""].join("")
+[l.name, l.quartier, l.desc, ...(l.tags||[]), l.politique||"", l.adresse||""].join("")
 );
 return termes.some(t => haystack.includes(t));
 });
@@ -389,7 +389,7 @@ setResults(fuzzySearch(query, lieux).slice(0, 5));
 }, [query, lieux]);
 
 const handleConfirm = (lieu, type) => {
-setConfirmed(c=>({…c, [lieu.id]:type}));
+setConfirmed(c=>({...c, [lieu.id]:type}));
 if (type==="ok") onConfirm(lieu.id);
 if (type==="detail") setShowDetail(lieu.id);
 };
@@ -843,7 +843,7 @@ const [prefs, setPrefs] = useState({ destination:"", duree:"weekend", gabarit:"m
 const [itinerary, setItinerary] = useState(null);
 const [loading, setLoading] = useState(false);
 
-const set = (k,v) => setPrefs(p=>({…p,[k]:v}));
+const set = (k,v) => setPrefs(p=>({...p,[k]:v}));
 
 const generate = () => {
 setLoading(true);
@@ -970,7 +970,7 @@ justifyContent:"center", height:"80vh", paddingBottom:100 }}>
 <div style={{ fontSize:56, marginBottom:20,
 animation:"pawbounce 0.7s ease-in-out infinite alternate" }}>🐾</div>
 <div style={{ fontFamily:"‘Fraunces’,Georgia,serif", fontSize:20, color:T.bark,
-marginBottom:8 }}>On prépare votre aventure…</div>
+marginBottom:8 }}>On prépare votre aventure...</div>
 <div style={{ fontSize:13, color:T.muted }}>Recherche des meilleurs spots dog-friendly</div>
 <style>{`@keyframes pawbounce{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-18px) rotate(5deg)}}`}</style>
 </div>
@@ -1189,7 +1189,7 @@ const [doublons, setDoublons] = useState([]);
 const [doubalonIgnored, setDoublonIgnored] = useState(false);
 
 const set = (k,v) => {
-setForm(f=>({…f,[k]:v}));
+setForm(f=>({...f,[k]:v}));
 // Recherche floue de doublons en temps réel
 if (k==="nom" && v.trim().length >= 3) {
 const found = fuzzySearch(v, lieux).slice(0, 3);
@@ -1854,10 +1854,10 @@ setScreen(prev);
 setFiche(null);
 };
 
-const addLieu = (l) => setLieux(ls => [l, …ls]);
+const addLieu = (l) => setLieux(ls => [l, ...ls]);
 
 const confirmLieu = (id) => {
-setLieux(ls => ls.map(l => l.id===id ? { …l, confirmations:l.confirmations+1 } : l));
+setLieux(ls => ls.map(l => l.id===id ? { ...l, confirmations:l.confirmations+1 } : l));
 };
 
 const screens = {
